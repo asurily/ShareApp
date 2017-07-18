@@ -9,7 +9,7 @@ The interface of Query:
 ![image](https://github.com/asurily/ShareApp/blob/master/pngs/query.png)
 
 The interface of Display:
-![image](https://github.com/asurily/ShareApp/blob/master/pngs/display.png)
+![image](https://github.com/asurily/ShareApp/blob/master/pngs/list.png)
 
 The interface of Creation:
 ![image](https://github.com/asurily/ShareApp/blob/master/pngs/create.png)
