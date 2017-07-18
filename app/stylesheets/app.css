@@ -1,0 +1,149 @@
+/*body {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 10%;
+  font-family: "Open Sans", sans-serif;
+}
+
+label {
+  display: inline-block;
+  width: 155px;
+}
+
+textarea {
+  width: 502px;
+  padding: 5px;
+  font-size: 16px;
+}
+input {
+  width: 500px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  padding: 5px;
+}
+
+h1, h2 {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #AAA;
+  font-size: 32px;
+}
+
+h3 {
+  font-weight: normal;
+  color: #AAA;
+  font-size: 24px;
+}
+
+.black {
+  color: black;
+}
+
+#balance {
+  color: black;
+}
+
+.hint {
+  color: #666;
+}
+*/
+
+body {
+  padding-top: 50px;
+  background-color: #F0F0F0;
+  color: #7C7C7C;
+}
+
+.navbar{
+  background-color:#2C5C84;
+}
+
+.nav-text{
+  color: #FFFFFF !important;
+}
+
+.nav-text:hover{
+  background-color:#346C9B !important;
+} 
+
+li.active2{
+  background-color:#4A8BC2 !important;
+}
+
+.max-width-960{
+  max-width:960px;
+}
+
+.margin-form{
+  margin-top:50px;
+}
+
+hr{
+  background-color: #CCCCCC;
+  height: 1px;
+}
+
+.text-center{
+  text-align:center;
+}
+
+.margin-top{
+  margin-top: 30px;
+}
+
+.footer{
+  background-color:#1F2123;
+}
+
+.footer2{
+  background-color:#000000;
+  text-align:center;
+  padding:8px;
+}
+
+.right{
+  float:right;
+}
+
+.separador{
+  border-top:solid 1px #CCC;
+  border-bottom:solid 1px #CCC;
+  padding: 30px;
+  margin: 20px 0px;
+  text-align: center;
+  color: #4A8BC2;
+  background-color:#F9F9F9;
+  font-size:2em;
+}
+
+#rentButton, #returnButton{
+  background-color:#33ffcc;
+  /*margin:1 auto;*/
+  /*float: right;*/
+}
+
+#verificationButton, #returnButton, #object-info{
+  display: none;
+}
+
+/*.box{
+    width:50%; margin-top:10%; margin:auto; padding:28px;
+    height:350px; border:1px #111 solid;
+    position: fixed;
+    top: 400px;
+    left: 200px;
+    background-color: #FFF;
+    display:none;            
+}
+.box.show{display:block;} 
+.box .x{ font-size:18px; text-align:right; display:block;}
+.box input{width:80%; font-size:18px; margin-top:18px;}*/
