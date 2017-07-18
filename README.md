@@ -22,7 +22,7 @@ The interface of Return:
 
 ## Installation
 We use geth client, so we need install some tools.
-Go, Geth and Truffle
+Go, Geth, Nodejs and Truffle
 
 ## Genesis block file
 The first block in blockchain is called "genesis block", our example's genesis.json is:
@@ -68,6 +68,11 @@ We used truffle, so you first need to install truffle.
 ```sh
 $ npm install -g truffle
 ```
+Because we need some node_modules, so we first need to install these according to the package.json file, using this command:
+```sh
+$ npm install
+```
+
 Now, change directory into the application, open a terminal. Then depoly our contract into our private network(need mine):
 ```sh
 $ truffle migrate --reset
