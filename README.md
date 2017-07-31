@@ -51,6 +51,11 @@ Then, launch the Javascript Console:
 ```sh
 > geth --identity "asurily" --rpc --rpccorsdomain "*" --datadir ~/etherTest --port "30303" --nodiscover --rpcapi "db,eth,net,web3" --networkid 1999 console 2>> ~/etherTest/geth.log
 ```
+A nodeInfo of mine
+```
+enode: "enode://f9f52442f0bb637d1d6a6d72e3801aadfa38baf1bfb2f45c60348f8b2daddaaca10727c4944a5dd0ff2b6bcdd0528b906fe48a4b92a4476ea0872f1fce541ff8@[::]:30303?discport=0"
+```
+
 ## Create your accounts
 In our test program, we need two accounts. One for create the sharing Object, the other is the renter.
 ```sh
