@@ -33,13 +33,47 @@
     <div class="container max-width-960 text-center">
       <form>
         <div class="input-group col-md-3 center-block">
-          <input type="text" name="search" id="search-value" class="form-control" placeholder="Object ID">
+          <input type="text" name="search" id="search-name" class="form-control" placeholder="Object Name">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" onclick="App.searchObj()">Search</button>
+            <button class="btn btn-default" type="button" onclick="App.searchObjByName()">SearchByName</button>
           </span>
         </div>
       </form>
     </div>
+
+
+    <div class="row text-center margin-top" id="nameObjects">      
+    <div class="container max-width-960" style="overflow:auto; height: 250px;">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="nameObjects-table">
+          <thead>
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">PriceDaily</th>
+              <th class="text-center">Deposit</th>
+              <th class="text-center">Rented</th>
+              <th class="text-center">OP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container max-width-960 text-center">
+      <form>
+        <div class="input-group col-md-3 center-block">
+          <input type="text" name="search" id="search-value" class="form-control" placeholder="Object ID">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" onclick="App.searchObj()">SearchByID</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
 
 
     <!-- Object info -->
@@ -86,6 +120,7 @@
               <th class="text-center">PriceDaily</th>
               <th class="text-center">Deposit</th>
               <th class="text-center">Rented</th>
+              <th class="text-center">OP</th>
             </tr>
           </thead>
           <tbody>
