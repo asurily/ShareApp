@@ -89,7 +89,7 @@ window.App = {
   },
 
   //View
-  postObject: function(_objID){
+  postObject: function(_objID){  //按ID查询之后显示具体
 
     var mainInstance;
     var numObjects;
@@ -156,20 +156,48 @@ window.App = {
     });
   },
 
-  searchObj: function(){
+  searchObj: function(){ //按id查询
     var self = this;
 
     var id = parseInt(document.getElementById("search-value").value);
     self.postObject(id);
   },
+
+  searchObjByName: function(){ //按名字查询
+    var self = this;
+
+    var name = document.getElementById("search-name").value;
+    self.postObjectsTableByName(name);
+  },
+
+  postObjectsTableByName: function(_name){ //按名字查询之后显示出所有记录
+    var self = this;
+    var ids;
+    var mainInstance;
+    document.getElementById("nameObjects").style.display = "inline";
+    $("#nameObjects-table tr:not(:first)").empty();
+    var tbody = document.getElementById("nameObjects-table").tBodies[0];
+    ShareApp.deployed().then(function(instance){
+      mainInstance=instance;
+      return instance.findNames.call(_name);
+    }).then(function(res){
+      ids = res;
+
+      for(let element of ids){
+        let id = element.toNumber();
+        self.addRowObjectTable(id,tbody);
+      }
+    });
+  },
   
-  addRowObjectTable: function(_id){
+  addRowObjectTable: function(_id,tbody){  //向表格中追加记录
+    var self = this;
     var mainInstance;
     var _objName;
     var _objPriceDaily;
     var _objDeposit;
     var _objRented;
-    var tbody = document.getElementById("objectsTable").tBodies[0];
+    // var tbody = document.getElementById("objectsTable").tBodies[0];
     ShareApp.deployed().then(function(instance){
           mainInstance = instance;
           return mainInstance.getObjectName.call(_id);
@@ -192,19 +220,29 @@ window.App = {
           var cell3 = row.insertCell(2);  //priceDaily
           var cell4 = row.insertCell(3);  //deposit
           var cell5 = row.insertCell(4);  //rented
+          var cell6 = row.insertCell(5);  //OP
 
           cell1.innerHTML = _id;
           cell2.innerHTML = _objName;
           cell3.innerHTML = _objPriceDaily;
           cell4.innerHTML = _objDeposit;
           cell5.innerHTML = _objRented;
+          cell6.innerHTML = '<a href="javascript:void(0);" onclick="javascript:App.display(this)">Display</a>';
         });
   },
 
-  postObjectsTable: function(){
+  display: function(obj){ //点击表格最后一列的<a>元素后显示当前行的具体信息
+    var self = this;
+    var tr = obj.parentNode.parentNode; //获取行
+    var id = tr.children[0].innerHTML; //获取行的第一列的值
+    self.postObject(id);
+  },
+
+  postObjectsTable: function(){  //把所有记录显示出来
     var self = this;
     var ids;
     var mainInstance;
+    var tbody = document.getElementById("objectsTable").tBodies[0];
     ShareApp.deployed().then(function(instance){
       mainInstance = instance;
       return instance.getObjectIds.call();
@@ -213,7 +251,7 @@ window.App = {
 
       for(let element of ids){
         let id = element.toNumber();
-        self.addRowObjectTable(id);
+        self.addRowObjectTable(id,tbody);
       }
     });
   },
@@ -306,6 +344,7 @@ window.addEventListener('load', function() {
     console.warn("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    // window.web3 = new Web3(new Web3.providers.HttpProvider("219.216.65.127:8545"));
   }
   // account = web3.eth.coinbase;
   App.start();
