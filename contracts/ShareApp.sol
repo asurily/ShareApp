@@ -17,10 +17,15 @@ contract ShareApp{
 		string detail;
 	}
 
+	struct NameKey{ // storage the name's keys
+		uint[] keys;
+	}
+
 	//List of objects
 	uint[] private ids;  //Use it to return the ids of Objects
 	uint public numObjects;
 	mapping(uint => Object) private objects;
+	mapping(string => NameKey) private nameToKeys;
 	// mapping(address => uint) public balances;
 
 	address public owner;
@@ -45,15 +50,20 @@ contract ShareApp{
 	/*
 	* Functions
 	*/
+	function ShareApp(){
+		owner = msg.sender;
+	}
+
 	function objectIsRented(uint objID) objectInRange(objID) returns (bool){
 		return objects[objID].rented;
 	}
 
 	function createObj(string name,uint priceDaily,uint deposit,string detail){
 		// +
-		owner = msg.sender;
+		//owner = msg.sender;
 		// Object newObject = objects[numObjects];
 		Object  newObject = objects[numObjects];
+		nameToKeys[name].keys.push(numObjects); //add the key to the name's keys
 
 		newObject.creator = msg.sender;
 		newObject.name = name;
@@ -67,30 +77,6 @@ contract ShareApp{
 		ids.push(numObjects);
 		numObjects++;
 	}
-
-	// function createObj1(string name,uint priceDaily,uint deposit,string detail){
-	// 	newObject = Object({
-	// 		creator: msg.sender,
-	// 		name: name,
-	// 		priceDaily: priceDaily,
-	// 		deposit: deposit,
-	// 		renter: Renter({addr:0x0,since:0}),
-	// 		rented: false,
-	// 		detail: detail
-	// 	});
-
-	// 	// numObjects++;
-	// 	// objects[numObjects] = Object({
-	// 	// 	creator: msg.sender,
-	// 	// 	name: name,
-	// 	// 	priceDaily: priceDaily,
-	// 	// 	deposit: deposit,
-	// 	// 	renter: Renter({addr:0x0,since:0}),
-	// 	// 	rented: false,
-	// 	// 	detail: detail
-	// 	// });
-	// 	numObjects++;
-	// }
 
 	// function getObj(uint objID) constant objectInRange(objID)
 	// 	returns(
@@ -121,7 +107,7 @@ contract ShareApp{
 	// }
 
 	function rentObj(uint objID) payable objectInRange(objID) returns(bool){
-		if(objectIsRented(objID) || msg.value < objects[objID].deposit || msg.sender == owner){
+		if(objectIsRented(objID) || msg.value < objects[objID].deposit || msg.sender == objects[objID].creator){
 			throw;
 		}
 		objects[objID].renter = Renter({addr:msg.sender, since:now});  //record the info of the renter
@@ -159,6 +145,10 @@ contract ShareApp{
 	// 	balances[msg.sender] = 0;
 	// 	msg.sender.transfer(amount);
 	// }
+
+	function findNames(string name) constant returns(uint[]){
+		return nameToKeys[name].keys;
+	}
 
 	function getNumObjects() constant returns(uint){
 		return numObjects;
