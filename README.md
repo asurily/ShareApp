@@ -5,7 +5,7 @@ The shareapp is a application that built on Ethereum. You can share anything if 
 
 In our testing program, we need two accounts. one for creator, the other is the renter. And we used geth and truffle.
 
-The interface of Query:
+The interface of Query by name and by id:
 ![image](https://github.com/asurily/ShareApp/blob/master/pngs/query.png)
 
 The interface of Display:
